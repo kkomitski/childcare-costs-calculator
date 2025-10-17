@@ -144,7 +144,7 @@ const App = () => {
                   value={daysPerWeek}
                   min={0}
                   max={7}
-                  step={1}
+                  step={0.5}
                   onChange={setDaysPerWeek}
                   label="Days per week"
                 />
@@ -156,7 +156,7 @@ const App = () => {
                   value={hoursPerDay}
                   min={4}
                   max={14}
-                  step={1}
+                  step={0.5}
                   onChange={setHoursPerDay}
                   label="Hours per day"
                 />
