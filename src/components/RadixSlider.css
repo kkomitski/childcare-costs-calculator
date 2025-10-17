@@ -14,6 +14,19 @@
   border-radius: 2px;
 }
 
+.RadixSliderThumb::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: none;
+}
+
 .RadixSliderRange {
   position: absolute;
   height: 100%;
@@ -22,6 +35,7 @@
 }
 
 .RadixSliderThumb {
+  position: relative;
   display: block;
   width: 20px;
   height: 20px;
