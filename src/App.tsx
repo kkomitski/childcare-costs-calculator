@@ -305,7 +305,7 @@ const App = () => {
                   <div className="grid grid-cols-3 gap-2 border-b-2 border-gray-200 px-2 pb-2 text-xs font-semibold text-gray-600 sm:grid-cols-4">
                     <div className="text-left">Item</div>
                     <div className="hidden text-right sm:block">Weekly</div>
-                    <div className="text-right sm:hidden">Monthly</div>
+                    <div className="text-right">Monthly</div>
                     <div className="text-right">Yearly</div>
                   </div>
 
@@ -317,7 +317,7 @@ const App = () => {
                     <div className="hidden text-right text-xs text-gray-700 sm:block sm:text-sm">
                       {formatCurrency(weeklyGross)}
                     </div>
-                    <div className="text-right text-xs text-gray-700 sm:hidden sm:text-sm">
+                    <div className="text-right text-xs text-gray-700 sm:text-sm">
                       {formatCurrency(monthlyGross)}
                     </div>
                     <div className="text-right text-xs font-semibold text-gray-900 sm:text-sm">
@@ -359,7 +359,7 @@ const App = () => {
                         : '−'}
                     </div>
                     <div
-                      className={`text-right text-xs sm:hidden sm:text-sm ${
+                      className={`text-right text-xs sm:text-sm ${
                         govtFundingSavings > 0
                           ? 'text-green-700'
                           : 'text-gray-400'
@@ -411,7 +411,7 @@ const App = () => {
                         : '−'}
                     </div>
                     <div
-                      className={`text-right text-xs sm:hidden sm:text-sm ${
+                      className={`text-right text-xs sm:text-sm ${
                         taxFreeChildcareSavings > 0
                           ? 'text-blue-700'
                           : 'text-gray-400'
@@ -462,7 +462,7 @@ const App = () => {
                         : '−'}
                     </div>
                     <div
-                      className={`text-right text-xs font-semibold sm:hidden sm:text-sm ${
+                      className={`text-right text-xs font-semibold sm:text-sm ${
                         totalSavings > 0 ? 'text-violet-700' : 'text-gray-400'
                       }`}
                     >
@@ -485,10 +485,10 @@ const App = () => {
                 {/* Net Cost (Final) */}
                 <div className="mt-auto grid grid-cols-3 items-center gap-2 rounded-xl bg-gradient-to-br from-violet-600 to-purple-600 p-3 text-white sm:grid-cols-4">
                   <div className="text-xs font-bold sm:text-sm">Net Cost</div>
-                  <div className="text-right text-base font-bold">
+                  <div className="hidden text-right text-base font-bold sm:block">
                     {formatCurrency(weeklyNet)}
                   </div>
-                  <div className="hidden text-right text-base font-bold sm:block">
+                  <div className="text-right text-base font-bold">
                     {formatCurrency(monthlyNet)}
                   </div>
                   <div className="text-right text-lg font-bold">
