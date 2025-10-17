@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import RadixSlider from './components/RadixSlider';
 
 const App = () => {
   // Input states
@@ -127,98 +128,38 @@ const App = () => {
 
               {/* Weeks Per Year */}
               <div className="mb-4">
-                <div className="mb-2 flex items-center justify-between">
-                  <label className="text-sm font-medium text-gray-700">
-                    Weeks per year
-                  </label>
-                  <span className="text-xl font-bold text-violet-600">
-                    {weeksPerYear}
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="52"
+                <RadixSlider
                   value={weeksPerYear}
-                  onChange={(e) => setWeeksPerYear(Number(e.target.value))}
-                  className="h-2 w-full cursor-pointer appearance-none rounded-full bg-gray-200 accent-violet-600"
-                  style={{
-                    background: `linear-gradient(to right, rgb(124 58 237) 0%, rgb(124 58 237) ${
-                      ((weeksPerYear - 0) / (52 - 0)) * 100
-                    }%, rgb(229 231 235) ${
-                      ((weeksPerYear - 0) / (52 - 0)) * 100
-                    }%, rgb(229 231 235) 100%)`,
-                    touchAction: 'pan-y',
-                  }}
+                  min={0}
+                  max={52}
+                  step={1}
+                  onChange={setWeeksPerYear}
+                  label="Weeks per year"
                 />
-                <div className="mt-1 flex justify-between text-xs text-gray-500">
-                  <span>0</span>
-                  <span>52</span>
-                </div>
               </div>
 
               {/* Days Per Week */}
               <div className="mb-4">
-                <div className="mb-2 flex items-center justify-between">
-                  <label className="text-sm font-medium text-gray-700">
-                    Days per week
-                  </label>
-                  <span className="text-xl font-bold text-violet-600">
-                    {daysPerWeek}
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="7"
+                <RadixSlider
                   value={daysPerWeek}
-                  onChange={(e) => setDaysPerWeek(Number(e.target.value))}
-                  className="h-2 w-full cursor-pointer appearance-none rounded-full bg-gray-200 accent-violet-600"
-                  style={{
-                    background: `linear-gradient(to right, rgb(124 58 237) 0%, rgb(124 58 237) ${
-                      ((daysPerWeek - 0) / (7 - 0)) * 100
-                    }%, rgb(229 231 235) ${
-                      ((daysPerWeek - 0) / (7 - 0)) * 100
-                    }%, rgb(229 231 235) 100%)`,
-                    touchAction: 'pan-y',
-                  }}
+                  min={0}
+                  max={7}
+                  step={1}
+                  onChange={setDaysPerWeek}
+                  label="Days per week"
                 />
-                <div className="mt-1 flex justify-between text-xs text-gray-500">
-                  <span>0</span>
-                  <span>7</span>
-                </div>
               </div>
 
               {/* Hours Per Day */}
               <div className="mb-4">
-                <div className="mb-2 flex items-center justify-between">
-                  <label className="text-sm font-medium text-gray-700">
-                    Hours per day
-                  </label>
-                  <span className="text-xl font-bold text-violet-600">
-                    {hoursPerDay}
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="4"
-                  max="14"
+                <RadixSlider
                   value={hoursPerDay}
-                  onChange={(e) => setHoursPerDay(Number(e.target.value))}
-                  className="h-2 w-full cursor-pointer appearance-none rounded-full bg-gray-200 accent-violet-600"
-                  style={{
-                    background: `linear-gradient(to right, rgb(124 58 237) 0%, rgb(124 58 237) ${
-                      ((hoursPerDay - 4) / (14 - 4)) * 100
-                    }%, rgb(229 231 235) ${
-                      ((hoursPerDay - 4) / (14 - 4)) * 100
-                    }%, rgb(229 231 235) 100%)`,
-                    touchAction: 'pan-y',
-                  }}
+                  min={4}
+                  max={14}
+                  step={1}
+                  onChange={setHoursPerDay}
+                  label="Hours per day"
                 />
-                <div className="mt-1 flex justify-between text-xs text-gray-500">
-                  <span>4</span>
-                  <span>14</span>
-                </div>
               </div>
 
               {/* Cost Per Hour */}

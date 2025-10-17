@@ -1,0 +1,39 @@
+.RadixSliderRoot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 20px;
+}
+
+.RadixSliderTrack {
+  position: relative;
+  flex-grow: 1;
+  height: 4px;
+  background-color: #e5e7eb;
+  border-radius: 2px;
+}
+
+.RadixSliderRange {
+  position: absolute;
+  height: 100%;
+  background-color: #7c3aed;
+  border-radius: 2px;
+}
+
+.RadixSliderThumb {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #7c3aed;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.15);
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.RadixSliderThumb:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
+}
