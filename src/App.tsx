@@ -304,8 +304,8 @@ const App = () => {
                   {/* Header Row */}
                   <div className="grid grid-cols-3 gap-2 border-b-2 border-gray-200 px-2 pb-2 text-xs font-semibold text-gray-600 sm:grid-cols-4">
                     <div className="text-left">Item</div>
-                    <div className="text-right">Weekly</div>
-                    <div className="hidden text-right sm:block">Monthly</div>
+                    <div className="hidden text-right sm:block">Weekly</div>
+                    <div className="text-right sm:hidden">Monthly</div>
                     <div className="text-right">Yearly</div>
                   </div>
 
@@ -314,10 +314,10 @@ const App = () => {
                     <div className="text-xs font-medium text-gray-900 sm:text-sm">
                       Gross Cost
                     </div>
-                    <div className="text-right text-xs text-gray-700 sm:text-sm">
+                    <div className="hidden text-right text-xs text-gray-700 sm:block sm:text-sm">
                       {formatCurrency(weeklyGross)}
                     </div>
-                    <div className="hidden text-right text-xs text-gray-700 sm:block sm:text-sm">
+                    <div className="text-right text-xs text-gray-700 sm:hidden sm:text-sm">
                       {formatCurrency(monthlyGross)}
                     </div>
                     <div className="text-right text-xs font-semibold text-gray-900 sm:text-sm">
@@ -348,7 +348,7 @@ const App = () => {
                       )}
                     </div>
                     <div
-                      className={`text-right text-xs sm:text-sm ${
+                      className={`hidden text-right text-xs sm:block sm:text-sm ${
                         govtFundingSavings > 0
                           ? 'text-green-700'
                           : 'text-gray-400'
@@ -359,7 +359,7 @@ const App = () => {
                         : '−'}
                     </div>
                     <div
-                      className={`hidden text-right text-xs sm:block sm:text-sm ${
+                      className={`text-right text-xs sm:hidden sm:text-sm ${
                         govtFundingSavings > 0
                           ? 'text-green-700'
                           : 'text-gray-400'
@@ -400,7 +400,7 @@ const App = () => {
                       Tax-Free (20%)
                     </div>
                     <div
-                      className={`text-right text-xs sm:text-sm ${
+                      className={`hidden text-right text-xs sm:block sm:text-sm ${
                         taxFreeChildcareSavings > 0
                           ? 'text-blue-700'
                           : 'text-gray-400'
@@ -411,7 +411,7 @@ const App = () => {
                         : '−'}
                     </div>
                     <div
-                      className={`hidden text-right text-xs sm:block sm:text-sm ${
+                      className={`text-right text-xs sm:hidden sm:text-sm ${
                         taxFreeChildcareSavings > 0
                           ? 'text-blue-700'
                           : 'text-gray-400'
@@ -453,7 +453,7 @@ const App = () => {
                       )}
                     </div>
                     <div
-                      className={`text-right text-xs font-semibold sm:text-sm ${
+                      className={`hidden text-right text-xs font-semibold sm:block sm:text-sm ${
                         totalSavings > 0 ? 'text-violet-700' : 'text-gray-400'
                       }`}
                     >
@@ -462,7 +462,7 @@ const App = () => {
                         : '−'}
                     </div>
                     <div
-                      className={`hidden text-right text-xs font-semibold sm:block sm:text-sm ${
+                      className={`text-right text-xs font-semibold sm:hidden sm:text-sm ${
                         totalSavings > 0 ? 'text-violet-700' : 'text-gray-400'
                       }`}
                     >
