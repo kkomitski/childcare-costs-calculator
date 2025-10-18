@@ -23,6 +23,11 @@ const Standard = ({ onToggle }: StandardProps) => {
     bothParentsUnder100k: parseAsBoolean.withDefault(true),
   });
 
+  // Local state for cost per hour input to handle empty string
+  const [costPerHourInput, setCostPerHourInput] = useState<string>(
+    String(inputState.costPerHour),
+  );
+
   const {
     weeksPerYear,
     daysPerWeek,
@@ -39,8 +44,6 @@ const Standard = ({ onToggle }: StandardProps) => {
     setInputState({ daysPerWeek: value });
   const setHoursPerDay = (value: number) =>
     setInputState({ hoursPerDay: value });
-  const setCostPerHour = (value: number | string) =>
-    setInputState({ costPerHour: typeof value === 'string' ? 0 : value });
   const setHasGovtFunding = (value: boolean) =>
     setInputState({ hasGovtFunding: value });
   const setHasTaxFreeChildcare = (value: boolean) =>
@@ -228,17 +231,26 @@ const Standard = ({ onToggle }: StandardProps) => {
                     type="number"
                     min="0"
                     step="0.10"
-                    value={costPerHour}
+                    value={costPerHourInput}
                     onChange={(e) => {
                       const value = e.target.value;
-                      // Allow empty string for deletion
+                      setCostPerHourInput(value);
+
+                      // Only update URL param if it's a valid number
                       if (value === '' || value === '.') {
-                        setCostPerHour('');
+                        // Don't update URL param for empty or partial input
                       } else {
                         const numValue = parseFloat(value);
                         if (!isNaN(numValue) && numValue >= 0) {
-                          setCostPerHour(numValue);
+                          setInputState({ costPerHour: numValue });
                         }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      // On blur, if empty, reset to default
+                      if (e.target.value === '' || e.target.value === '.') {
+                        setCostPerHourInput('6.5');
+                        setInputState({ costPerHour: 6.5 });
                       }
                     }}
                     className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 py-2.5 pl-8 pr-4 text-base font-semibold text-gray-900 transition-colors focus:border-violet-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-violet-100"

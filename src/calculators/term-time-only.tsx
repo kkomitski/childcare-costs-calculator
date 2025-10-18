@@ -18,6 +18,7 @@ import {
   parseAsIsoDateTime,
   useQueryStates,
 } from 'nuqs';
+import { useState } from 'react';
 import RadixSlider from '../components/RadixSlider';
 
 // UK School term dates
@@ -142,6 +143,11 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
     bothParentsUnder100k: parseAsBoolean.withDefault(true),
   });
 
+  // Local state for cost per hour input to handle empty string
+  const [costPerHourInput, setCostPerHourInput] = useState<string>(
+    String(state.costPerHour),
+  );
+
   const {
     currentMonth,
     daysPerWeek,
@@ -155,8 +161,6 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
   const setCurrentMonth = (value: Date) => setState({ currentMonth: value });
   const setDaysPerWeek = (value: number) => setState({ daysPerWeek: value });
   const setHoursPerDay = (value: number) => setState({ hoursPerDay: value });
-  const setCostPerHour = (value: number | string) =>
-    setState({ costPerHour: typeof value === 'string' ? 0 : value });
   const setHasGovtFunding = (value: boolean) =>
     setState({ hasGovtFunding: value });
   const setHasTaxFreeChildcare = (value: boolean) =>
@@ -539,16 +543,26 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                     type="number"
                     min="0"
                     step="0.10"
-                    value={costPerHour}
+                    value={costPerHourInput}
                     onChange={(e) => {
                       const value = e.target.value;
+                      setCostPerHourInput(value);
+
+                      // Only update URL param if it's a valid number
                       if (value === '' || value === '.') {
-                        setCostPerHour('');
+                        // Don't update URL param for empty or partial input
                       } else {
                         const numValue = parseFloat(value);
                         if (!isNaN(numValue) && numValue >= 0) {
-                          setCostPerHour(numValue);
+                          setState({ costPerHour: numValue });
                         }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      // On blur, if empty, reset to default
+                      if (e.target.value === '' || e.target.value === '.') {
+                        setCostPerHourInput('6.5');
+                        setState({ costPerHour: 6.5 });
                       }
                     }}
                     className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 py-2.5 pl-8 pr-4 text-base font-semibold text-gray-900 transition-colors focus:border-violet-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-violet-100"
