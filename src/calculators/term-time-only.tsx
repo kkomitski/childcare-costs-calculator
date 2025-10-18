@@ -470,14 +470,14 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-violet-50 via-white to-purple-50 px-4 py-8 sm:px-6 lg:px-8">
       <div className="w-full max-w-[1600px]">
-        <div className="grid gap-5 lg:grid-cols-4 lg:gap-6">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {/* Left Column - Header & Input Form */}
-          <div className="flex flex-col gap-5 lg:col-span-1">
+          <div className="flex flex-col gap-5 md:col-span-2 lg:col-span-1">
             {/* Header Card */}
-            <div className="rounded-2xl bg-gradient-to-br from-violet-600 to-purple-600 p-6 text-white shadow-lg">
+            <div className="rounded-2xl bg-gradient-to-br from-violet-600 to-purple-600 p-8 text-white shadow-lg">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
-                  <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
                     Term-Time Only Calculator
                   </h1>
                   <p className="mt-2 text-sm text-violet-100">
@@ -497,8 +497,8 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
             </div>
 
             {/* Settings Card */}
-            <div className="rounded-2xl bg-white p-5 shadow-lg ring-1 ring-gray-900/5">
-              <h2 className="mb-4 text-lg font-semibold text-gray-900">
+            <div className="rounded-2xl bg-white p-5 shadow-lg ring-1 ring-gray-900/5 sm:p-6">
+              <h2 className="mb-4 text-xl font-semibold text-gray-900">
                 Settings
               </h2>
 
@@ -631,29 +631,29 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
           </div>
 
           {/* Middle Column - Calendar */}
-          <div className="lg:col-span-2">
-            <div className="rounded-2xl bg-white p-5 shadow-lg ring-1 ring-gray-900/5">
+          <div className="md:col-span-2 lg:col-span-2">
+            <div className="rounded-2xl bg-white p-5 shadow-lg ring-1 ring-gray-900/5 sm:p-6">
               {/* Calendar Header */}
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">
+              <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <h2 className="text-xl font-bold text-gray-900 sm:text-2xl">
                   {format(currentMonth, 'MMMM yyyy')}
                 </h2>
                 <div className="flex gap-2">
                   <button
                     onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
-                    className="rounded-lg border-2 border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-violet-300 hover:bg-violet-50"
+                    className="flex-1 rounded-lg border-2 border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-violet-300 hover:bg-violet-50 sm:flex-none"
                   >
                     ← Prev
                   </button>
                   <button
                     onClick={() => setCurrentMonth(new Date())}
-                    className="rounded-lg border-2 border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-violet-300 hover:bg-violet-50"
+                    className="flex-1 rounded-lg border-2 border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-violet-300 hover:bg-violet-50 sm:flex-none"
                   >
                     Today
                   </button>
                   <button
                     onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
-                    className="rounded-lg border-2 border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-violet-300 hover:bg-violet-50"
+                    className="flex-1 rounded-lg border-2 border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-violet-300 hover:bg-violet-50 sm:flex-none"
                   >
                     Next →
                   </button>
@@ -662,14 +662,14 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
 
               {/* Calendar Grid */}
               <div className="overflow-x-auto">
-                <div className="min-w-[600px]">
+                <div className="min-w-[280px]">
                   {/* Weekday Headers */}
                   <div className="mb-2 grid grid-cols-7 gap-1">
                     {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(
                       (day) => (
                         <div
                           key={day}
-                          className="text-center text-xs font-semibold text-gray-600"
+                          className="text-center text-[10px] font-semibold text-gray-600 sm:text-xs"
                         >
                           {day}
                         </div>
@@ -702,7 +702,7 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                               return (
                                 <div
                                   key={dayIndex}
-                                  className={`relative rounded-lg p-2 text-center text-sm ${
+                                  className={`relative rounded-lg p-1 text-center text-xs sm:p-2 sm:text-sm ${
                                     isCurrentMonth
                                       ? isUnpaid
                                         ? 'bg-gray-200 text-gray-500'
@@ -716,7 +716,9 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                                     {format(day, 'd')}
                                   </div>
                                   {isCurrentMonth && isUnpaid && (
-                                    <div className="mt-0.5 text-[10px]">❌</div>
+                                    <div className="mt-0.5 text-[8px] sm:text-[10px]">
+                                      ❌
+                                    </div>
                                   )}
                                 </div>
                               );
@@ -734,10 +736,10 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                                     : 'bg-orange-100 text-orange-900'
                               }`}
                             >
-                              <div className="flex items-center justify-between text-sm">
+                              <div className="flex flex-col gap-1 text-xs sm:flex-row sm:items-center sm:justify-between sm:text-sm">
                                 <div className="font-medium">
                                   Week {getWeek(week[0])}
-                                  <span className="ml-2 text-xs">
+                                  <span className="ml-2 text-[10px] sm:text-xs">
                                     {weekCost.isUnpaid
                                       ? '❌ Unpaid'
                                       : weekCost.isTermTime
@@ -752,7 +754,7 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                               {!weekCost.isUnpaid &&
                                 weekCost.unpaidDays !== undefined &&
                                 weekCost.unpaidDays > 0 && (
-                                  <div className="mt-1 text-xs opacity-75">
+                                  <div className="mt-1 text-[10px] opacity-75 sm:text-xs">
                                     ({weekCost.unpaidDays} unpaid day
                                     {weekCost.unpaidDays > 1 ? 's' : ''})
                                   </div>
@@ -760,7 +762,7 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                               {!weekCost.isUnpaid &&
                                 weekCost.isTermTime &&
                                 weekCost.fundedHours > 0 && (
-                                  <div className="mt-1 text-xs">
+                                  <div className="mt-1 text-[10px] sm:text-xs">
                                     {weekCost.fundedHours.toFixed(1)}h funded @
                                     £{surchargePerHour}/h
                                     {weekCost.unfundedHours > 0 &&
@@ -770,7 +772,7 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                                   </div>
                                 )}
                               {!weekCost.isUnpaid && !weekCost.isTermTime && (
-                                <div className="mt-1 text-xs">
+                                <div className="mt-1 text-[10px] sm:text-xs">
                                   {weekCost.unfundedHours.toFixed(1)}h @ £
                                   {costPerHour}/h (no funding)
                                 </div>
@@ -828,19 +830,19 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
               </div>
 
               {/* Legend */}
-              <div className="mt-4 flex flex-wrap gap-4 text-sm">
+              <div className="mt-4 flex flex-wrap gap-3 text-xs sm:gap-4 sm:text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded bg-green-50 ring-1 ring-green-200"></div>
+                  <div className="h-3 w-3 rounded bg-green-50 ring-1 ring-green-200 sm:h-4 sm:w-4"></div>
                   <span className="text-gray-600">
                     Term Time (with funding)
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded bg-orange-50 ring-1 ring-orange-200"></div>
+                  <div className="h-3 w-3 rounded bg-orange-50 ring-1 ring-orange-200 sm:h-4 sm:w-4"></div>
                   <span className="text-gray-600">Holiday (full cost)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded bg-gray-200 ring-1 ring-gray-300"></div>
+                  <div className="h-3 w-3 rounded bg-gray-200 ring-1 ring-gray-300 sm:h-4 sm:w-4"></div>
                   <span className="text-gray-600">
                     Unpaid (bank holidays, Xmas period)
                   </span>
@@ -850,10 +852,10 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
           </div>
 
           {/* Right Column - Cost Breakdown */}
-          <div className="lg:col-span-1">
+          <div className="md:col-span-2 lg:col-span-1">
             {/* Cost Breakdown */}
-            <div className="rounded-2xl bg-white p-5 shadow-lg ring-1 ring-gray-900/5">
-              <h2 className="mb-3 text-lg font-semibold text-gray-900">
+            <div className="rounded-2xl bg-white p-5 shadow-lg ring-1 ring-gray-900/5 sm:p-6">
+              <h2 className="mb-4 text-xl font-semibold text-gray-900">
                 Annual Cost Breakdown
               </h2>
 
