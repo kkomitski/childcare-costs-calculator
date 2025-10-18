@@ -750,10 +750,11 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                                     : 'bg-orange-100 text-orange-900'
                               }`}
                             >
-                              <div className="flex flex-col gap-1 text-xs sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+                              {/* Week header with cost on the same line */}
+                              <div className="flex items-start justify-between text-xs sm:text-sm">
                                 <div className="font-medium">
-                                  Week {getWeek(week[0])}
-                                  <span className="ml-2 text-[10px] sm:text-xs">
+                                  Week {getWeek(week[0])}{' '}
+                                  <span className="text-[10px] sm:text-xs">
                                     {weekCost.isUnpaid
                                       ? '❌ Unpaid'
                                       : weekCost.isTermTime
@@ -765,30 +766,34 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                                   {formatCurrency(weekCost.total)}
                                 </div>
                               </div>
-                              {!weekCost.isUnpaid &&
-                                weekCost.unpaidDays !== undefined &&
-                                weekCost.unpaidDays > 0 && (
-                                  <div className="mt-1 text-[10px] opacity-75 sm:text-xs">
-                                    ({weekCost.unpaidDays} unpaid day
-                                    {weekCost.unpaidDays > 1 ? 's' : ''})
-                                  </div>
-                                )}
-                              {!weekCost.isUnpaid &&
-                                weekCost.isTermTime &&
-                                weekCost.fundedHours > 0 && (
-                                  <div className="mt-1 text-[10px] sm:text-xs">
-                                    {weekCost.fundedHours.toFixed(1)}h funded @
-                                    £{surchargePerHour}/h
-                                    {weekCost.unfundedHours > 0 &&
-                                      ` + ${weekCost.unfundedHours.toFixed(
-                                        1,
-                                      )}h @ £${costPerHour}/h`}
-                                  </div>
-                                )}
-                              {!weekCost.isUnpaid && !weekCost.isTermTime && (
+
+                              {/* Details on second line */}
+                              {!weekCost.isUnpaid && (
                                 <div className="mt-1 text-[10px] sm:text-xs">
-                                  {weekCost.unfundedHours.toFixed(1)}h @ £
-                                  {costPerHour}/h (no funding)
+                                  {weekCost.isTermTime &&
+                                    weekCost.fundedHours > 0 && (
+                                      <>
+                                        {weekCost.fundedHours.toFixed(1)}h
+                                        funded @£{surchargePerHour}
+                                        {weekCost.unfundedHours > 0 &&
+                                          ` + ${weekCost.unfundedHours.toFixed(
+                                            1,
+                                          )}h @£${costPerHour}/h`}
+                                      </>
+                                    )}
+                                  {!weekCost.isTermTime && (
+                                    <>
+                                      {weekCost.unfundedHours.toFixed(1)}h @£
+                                      {costPerHour}/h
+                                    </>
+                                  )}
+                                  {weekCost.unpaidDays !== undefined &&
+                                    weekCost.unpaidDays > 0 && (
+                                      <span className="ml-2 opacity-75">
+                                        ({weekCost.unpaidDays} unpaid day
+                                        {weekCost.unpaidDays > 1 ? 's' : ''})
+                                      </span>
+                                    )}
                                 </div>
                               )}
                             </div>
