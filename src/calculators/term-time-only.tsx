@@ -543,7 +543,7 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
                     onChange={(e) => {
                       const value = e.target.value;
                       if (value === '' || value === '.') {
-                        setCostPerHour(0);
+                        setCostPerHour('');
                       } else {
                         const numValue = parseFloat(value);
                         if (!isNaN(numValue) && numValue >= 0) {

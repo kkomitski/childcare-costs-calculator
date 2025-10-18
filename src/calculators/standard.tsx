@@ -233,7 +233,7 @@ const Standard = ({ onToggle }: StandardProps) => {
                       const value = e.target.value;
                       // Allow empty string for deletion
                       if (value === '' || value === '.') {
-                        setCostPerHour(0);
+                        setCostPerHour('');
                       } else {
                         const numValue = parseFloat(value);
                         if (!isNaN(numValue) && numValue >= 0) {
