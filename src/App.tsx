@@ -4,8 +4,8 @@ import TermTimeOnly from './calculators/term-time-only';
 
 const App = () => {
   const [activeCalculator, setActiveCalculator] = useQueryState('calculator', {
-    defaultValue: 'term-time',
-    parse: (value) => (value === 'standard' ? 'standard' : 'term-time'),
+    defaultValue: 'standard',
+    parse: (value) => (value === 'term-time' ? 'term-time' : 'standard'),
   });
 
   if (activeCalculator === 'term-time') {
