@@ -276,19 +276,19 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
     return weeks;
   };
 
-  const calculateMonthTotal = () => {
-    const weeks = getCalendarWeeks();
-    let total = 0;
+  // const calculateMonthTotal = () => {
+  //   const weeks = getCalendarWeeks();
+  //   let total = 0;
 
-    weeks.forEach((week) => {
-      if (isSameMonth(week[0], currentMonth)) {
-        const cost = calculateWeekCost(week[0]);
-        total += cost.total;
-      }
-    });
+  //   weeks.forEach((week) => {
+  //     if (isSameMonth(week[0], currentMonth)) {
+  //       const cost = calculateWeekCost(week[0]);
+  //       total += cost.total;
+  //     }
+  //   });
 
-    return total;
-  };
+  //   return total;
+  // };
 
   // Calculate detailed month breakdown with savings
   const calculateMonthBreakdown = () => {
@@ -369,18 +369,18 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
     };
   };
 
-  const calculateYearTotal = () => {
-    let total = 0;
-    const startDate = new Date(currentMonth.getFullYear(), 0, 1);
+  // const calculateYearTotal = () => {
+  //   let total = 0;
+  //   const startDate = new Date(currentMonth.getFullYear(), 0, 1);
 
-    for (let i = 0; i < 52; i++) {
-      const weekStart = addDays(startDate, i * 7);
-      const cost = calculateWeekCost(weekStart);
-      total += cost.total;
-    }
+  //   for (let i = 0; i < 52; i++) {
+  //     const weekStart = addDays(startDate, i * 7);
+  //     const cost = calculateWeekCost(weekStart);
+  //     total += cost.total;
+  //   }
 
-    return total;
-  };
+  //   return total;
+  // };
 
   // Calculate detailed year breakdown with savings
   const calculateYearBreakdown = () => {
@@ -462,9 +462,9 @@ const TermTimeOnlyCalc = ({ onToggle }: TermTimeOnlyCalcProps) => {
   };
 
   const weeks = getCalendarWeeks();
-  const monthTotal = calculateMonthTotal();
+  // const monthTotal = calculateMonthTotal();
   const monthBreakdown = calculateMonthBreakdown();
-  const yearTotal = calculateYearTotal();
+  // const yearTotal = calculateYearTotal();
   const yearBreakdown = calculateYearBreakdown();
 
   return (
